@@ -83,25 +83,38 @@ char *msFileParseLines(const char *filePath, USDA *usda) {
     } return contents;
 }
 
-void musParseArguments(int *argc, char ***argv, bool *laReal, bool *debugMode) {
+void usage(const char * const program) {
+    // Refactor TODO!
+    printf("USAGE:\n");
+    printf(">> %s <args>\n", program);
+    printf("Where <args>:\n");
+    printf("\t%s: Ayuda\n", FLAG_HELP1);
+    printf("\t%s: Ayuda\n", FLAG_HELP2);
+    printf("\t%s: Desactiva la Real\n", FLAG_NO_REAL);
+    printf("\t%s: Activa el modo debug\n", FLAG_DEBUGGER_MODE);
+    exit(0);
+}
+
+void musParseArguments(int *argc, char ***argv, bool *laReal, bool *debugMode, const char * const program) {
     while(*argc > 0) {
         const char *arg = utilArgShift(argc, argv);
         if(strncmp(arg, FLAG_NO_REAL, FLAG_NO_REAL_LEN) == 0) *laReal = false;
         else if(strncmp(arg, FLAG_DEBUGGER_MODE, FLAG_DEBUGGER_MODE_LEN) == 0) *debugMode = true;
         else if(strncmp(arg, ARG_LUCAS, ARG_LUCAS_LEN) == 0) {botLog(P1, "lucas? el mejor\n"); exit(0);}
         else if(strncmp(arg, ARG_JAIME, ARG_JAIME_LEN) == 0) {botLog(P1, "jaime aprende a jugar\n"); exit(0);}
+        else if(strncmp(arg, FLAG_HELP1, FLAG_HELP1_LEN) == 0 || strncmp(arg, FLAG_HELP2, FLAG_HELP2_LEN) == 0) usage(program);
         else musLogMsg(MMERROR, "Argumento invalido");
     }
 }
 
 int main(int argc, char **argv) {
 
-    (void)utilArgShift(&argc, &argv);
+    const char * const program = utilArgShift(&argc, &argv);
     utilConsoleColorSet(UTIL_COLOR_DEFAULT); 
 
     bool laReal = true;
     bool debugMode = false;
-    musParseArguments(&argc, &argv, &laReal, &debugMode);
+    musParseArguments(&argc, &argv, &laReal, &debugMode, program);
 
     USDA openingsList = {0};
     USDA winningList = {0};
@@ -138,6 +151,8 @@ int main(int argc, char **argv) {
         mus.posMano = (mus.posMano + 1) % PLAYERS;
     } 
 
+    // Habria que cambiar todo para que el programa
+    // pueda llegar aqui, TODO!
     assert(false && "How");
     msTableDelete(table);
     msPtableDelete(pTable);

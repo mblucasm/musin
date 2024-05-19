@@ -72,8 +72,12 @@ enum {JUGADAPASO = '\0', JUGADANONE = 'X', JUGADAORDAGO = 'O', JUGADAQUIERO = 'Q
 #define BUFFER_LEN 200
 #define ITERS 1000000
 
+#define FLAG_HELP1 "-h"
+#define FLAG_HELP2 "--help"
 #define FLAG_NO_REAL "-noReal"
 #define FLAG_DEBUGGER_MODE "-db"
+#define FLAG_HELP1_LEN ((sizeof(FLAG_HELP1) / sizeof(FLAG_HELP1[0])) - 1) 
+#define FLAG_HELP2_LEN ((sizeof(FLAG_HELP2) / sizeof(FLAG_HELP2[0])) - 1)
 #define FLAG_NO_REAL_LEN ((sizeof(FLAG_NO_REAL) / sizeof(FLAG_NO_REAL[0])) - 1)
 #define FLAG_DEBUGGER_MODE_LEN ((sizeof(FLAG_DEBUGGER_MODE) / sizeof(FLAG_DEBUGGER_MODE[0])) - 1)
 
