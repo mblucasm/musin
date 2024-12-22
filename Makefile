@@ -1,7 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra
-OUT = musin
-TARGET = main.c
+SRCDIR = src
+TARGET = musin
+SRC = $(SRCDIR)/main.c
 
-main: $(TARGET)
-	$(CC) $(CFLAGS) -o $(OUT) $(TARGET)
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
