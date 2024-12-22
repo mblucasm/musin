@@ -55,8 +55,8 @@ enum {TGRANDE, TCHICA, TPARES, TJUEGO, TCOUNT};
 enum {COUPLE1, COUPLE2};
 enum {JUGADAPASO = '\0', JUGADANONE = 'X', JUGADAORDAGO = 'O', JUGADAQUIERO = 'Q'};
 
-#define ARG_LUCAS "lucas"
-#define ARG_JAIME "jaime"
+#define ARG_LUCAS ("lucas")
+#define ARG_JAIME ("jaime")
 #define ARG_LUCAS_LEN ((sizeof(ARG_LUCAS) / sizeof(ARG_LUCAS[0])) - 1)
 #define ARG_JAIME_LEN ((sizeof(ARG_JAIME) / sizeof(ARG_JAIME[0])) - 1)
 
@@ -72,14 +72,12 @@ enum {JUGADAPASO = '\0', JUGADANONE = 'X', JUGADAORDAGO = 'O', JUGADAQUIERO = 'Q
 #define BUFFER_LEN 200
 #define ITERS 1000000
 
-#define FLAG_HELP1 "-h"
-#define FLAG_HELP2 "--help"
-#define FLAG_NO_REAL "-noReal"
-#define FLAG_DEBUGGER_MODE "-db"
-#define FLAG_HELP1_LEN ((sizeof(FLAG_HELP1) / sizeof(FLAG_HELP1[0])) - 1) 
-#define FLAG_HELP2_LEN ((sizeof(FLAG_HELP2) / sizeof(FLAG_HELP2[0])) - 1)
+#define FLAG_HELP ("help")
+#define FLAG_NO_REAL ("noreal")
+#define FLAG_DEBUG_MODE ("debug")
+#define FLAG_HELP_LEN ((sizeof(FLAG_HELP) / sizeof(FLAG_HELP[0])) - 1) 
 #define FLAG_NO_REAL_LEN ((sizeof(FLAG_NO_REAL) / sizeof(FLAG_NO_REAL[0])) - 1)
-#define FLAG_DEBUGGER_MODE_LEN ((sizeof(FLAG_DEBUGGER_MODE) / sizeof(FLAG_DEBUGGER_MODE[0])) - 1)
+#define FLAG_DEBUG_MODE_LEN ((sizeof(FLAG_DEBUG_MODE) / sizeof(FLAG_DEBUG_MODE[0])) - 1)
 
 #define FP_WINNINGP "files/win40.txt"
 #define FP_OPENINGS "files/openings.txt"

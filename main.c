@@ -20,13 +20,22 @@
 #endif
 
 typedef struct {
-    int amarracos[COUPLES], envites[LANCES], posMano, tablePos, paresScore, juegoScore;
-    bool debug, laReal, someoneHasJuego, wePlayPares;
-    UtilSlice ophrase, wphrase;
-    size_t bufferLen;
-    char *buffer;
-    Ptable *pt;
     Hand hand;
+    UtilSlice ophrase;
+    UtilSlice wphrase;
+    int amarracos[COUPLES];
+    int envites[LANCES];
+    int posMano;
+    int tablePos;
+    int paresScore;
+    int juegoScore;
+    bool debug;
+    bool laReal;
+    bool someoneHasJuego;
+    bool wePlayPares;
+    char *buffer;
+    size_t bufferLen;
+    Ptable *pt;
 } Mus;
 
 typedef enum {MMERROR, MMINFO, MMDEBUG} MsgMode;
@@ -84,26 +93,23 @@ char *msFileParseLines(const char *filePath, USDA *usda) {
 }
 
 void usage(const char * const program) {
-    // Refactor TODO!
-    printf("USAGE:\n");
-    printf(">> %s <args>\n", program);
-    printf("Where <args>:\n");
-    printf("\t%s: Ayuda\n", FLAG_HELP1);
-    printf("\t%s: Ayuda\n", FLAG_HELP2);
-    printf("\t%s: Desactiva la Real\n", FLAG_NO_REAL);
-    printf("\t%s: Activa el modo debug\n", FLAG_DEBUGGER_MODE);
-    exit(0);
+    printf("usage: ./musin [args]\n\n");
+    printf("args:\n");
+    printf("\t%s          Ayuda\n", FLAG_HELP);
+    printf("\t%s        Desactiva la Real\n", FLAG_NO_REAL);
+    printf("\t%s         Activa el modo debug\n\n", FLAG_DEBUG_MODE);
+    printf("location: %s\n", program);
 }
 
 void musParseArguments(int *argc, char ***argv, bool *laReal, bool *debugMode, const char * const program) {
     while(*argc > 0) {
         const char *arg = utilArgShift(argc, argv);
-        if(strncmp(arg, FLAG_NO_REAL, FLAG_NO_REAL_LEN) == 0) *laReal = false;
-        else if(strncmp(arg, FLAG_DEBUGGER_MODE, FLAG_DEBUGGER_MODE_LEN) == 0) *debugMode = true;
+        if     (strncmp(arg, FLAG_NO_REAL, FLAG_NO_REAL_LEN) == 0) *laReal = false;
+        else if(strncmp(arg, FLAG_DEBUG_MODE, FLAG_DEBUG_MODE_LEN) == 0) *debugMode = true;
         else if(strncmp(arg, ARG_LUCAS, ARG_LUCAS_LEN) == 0) {botLog(P1, "lucas? el mejor\n"); exit(0);}
         else if(strncmp(arg, ARG_JAIME, ARG_JAIME_LEN) == 0) {botLog(P1, "jaime aprende a jugar\n"); exit(0);}
-        else if(strncmp(arg, FLAG_HELP1, FLAG_HELP1_LEN) == 0 || strncmp(arg, FLAG_HELP2, FLAG_HELP2_LEN) == 0) usage(program);
-        else musLogMsg(MMERROR, "Argumento invalido");
+        else if(strncmp(arg, FLAG_HELP, FLAG_HELP_LEN) == 0) {usage(program); exit(0);}
+        else musLogMsg(MMERROR, "Argumento invalido, para ver que argumentos son validos: ./musin %s\n", FLAG_HELP);
     }
 }
 
