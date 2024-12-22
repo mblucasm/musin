@@ -497,7 +497,7 @@ void envitesLogic(Mus * const mus, Lance lance) {
 
 void musWinCheck(int amarracos[COUPLES], UtilSlice wphrase) {
     if(amarracos[COUPLE1] >= 40)      {layout(); utilConsoleColorSet(UTIL_COLOR_GREEN); printf("[ORDENADOR]: "); printf(USFMT"\n", USARG(wphrase)); utilConsoleColorSet(UTIL_COLOR_DEFAULT); exit(0);}
-    else if(amarracos[COUPLE2] >= 40) {layout(); printf("Hemos perdido, voy con diego?\n"); exit(0);}
+    else if(amarracos[COUPLE2] >= 40) {layout(); utilConsoleColorSet(UTIL_COLOR_GREEN); printf("[ORDENADOR]: "); printf("Hemos perdido, voy con diego?\n"); utilConsoleColorSet(UTIL_COLOR_DEFAULT); exit(0);}
 }
 
 void botLogParesJuegoInfo(const Mus * const mus, Lance lance) {
