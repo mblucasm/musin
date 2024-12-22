@@ -79,8 +79,8 @@ enum {JUGADAPASO = '\0', JUGADANONE = 'X', JUGADAORDAGO = 'O', JUGADAQUIERO = 'Q
 #define FLAG_NO_REAL_LEN ((sizeof(FLAG_NO_REAL) / sizeof(FLAG_NO_REAL[0])) - 1)
 #define FLAG_DEBUG_MODE_LEN ((sizeof(FLAG_DEBUG_MODE) / sizeof(FLAG_DEBUG_MODE[0])) - 1)
 
-#define FP_WINNINGP "files/win40.txt"
-#define FP_OPENINGS "files/openings.txt"
+#define FP_WINNINGP "src/files/win40.txt"
+#define FP_OPENINGS "src/files/openings.txt"
 
 typedef struct {
     size_t sub[4];
