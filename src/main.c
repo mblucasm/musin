@@ -97,20 +97,22 @@ void usage(const char * const program) {
     printf("args:\n");
     printf("\t%s          Ayuda\n", FLAG_HELP);
     printf("\t%s        Desactiva la Real\n", FLAG_NO_REAL);
-    printf("\t%s         Activa el modo debug\n\n", FLAG_DEBUG_MODE);
+    printf("\t%s         Activa el modo debug\n", FLAG_DEBUG_MODE);
+    printf("\t%s    Imprimir tabla de probabilidades y ganancias y salir\n\n", FLAG_GET_PTABLE);
     printf("location: %s\n", program);
 }
 
-void musParseArguments(int *argc, char ***argv, bool *laReal, bool *debugMode, const char * const program) {
+bool musParseArguments(int *argc, char ***argv, bool *laReal, bool *debugMode, const char * const program) {
     while(*argc > 0) {
         const char *arg = utilArgShift(argc, argv);
-        if     (strncmp(arg, FLAG_NO_REAL, FLAG_NO_REAL_LEN) == 0) *laReal = false;
+        if(strncmp(arg, FLAG_GET_PTABLE, FLAG_GET_PTABLE_LEN) == 0) return true;
+        else if(strncmp(arg, FLAG_NO_REAL, FLAG_NO_REAL_LEN) == 0) *laReal = false;
         else if(strncmp(arg, FLAG_DEBUG_MODE, FLAG_DEBUG_MODE_LEN) == 0) *debugMode = true;
         else if(strncmp(arg, ARG_LUCAS, ARG_LUCAS_LEN) == 0) {botLog(P1, "lucas? el mejor\n"); exit(0);}
         else if(strncmp(arg, ARG_JAIME, ARG_JAIME_LEN) == 0) {botLog(P1, "jaime aprende a jugar\n"); exit(0);}
         else if(strncmp(arg, FLAG_HELP, FLAG_HELP_LEN) == 0) {usage(program); exit(0);}
         else musLogMsg(MMERROR, "Argumento invalido, para ver que argumentos son validos: ./musin %s\n", FLAG_HELP);
-    }
+    } return false;
 }
 
 int main(int argc, char **argv) {
@@ -120,7 +122,7 @@ int main(int argc, char **argv) {
 
     bool laReal = true;
     bool debugMode = false;
-    musParseArguments(&argc, &argv, &laReal, &debugMode, program);
+    bool getPtable = musParseArguments(&argc, &argv, &laReal, &debugMode, program);
 
     USDA openingsList = {0};
     USDA winningList = {0};
@@ -132,6 +134,7 @@ int main(int argc, char **argv) {
     struct xrandom rnd = xrandom(time(0));
     Table table = msTableGenerate(ITERS, laReal, &rnd);
     Ptable pTable = msPtableGenerate(table);
+    if(getPtable) {msPtablePrint(pTable); return 0;}
 
     Mus mus = musInit(laReal, debugMode, &pTable, winningList); 
     musWelcome(&mus);

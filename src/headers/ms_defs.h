@@ -75,9 +75,11 @@ enum {JUGADAPASO = '\0', JUGADANONE = 'X', JUGADAORDAGO = 'O', JUGADAQUIERO = 'Q
 #define FLAG_HELP ("help")
 #define FLAG_NO_REAL ("noreal")
 #define FLAG_DEBUG_MODE ("debug")
+#define FLAG_GET_PTABLE ("get-ptable")
 #define FLAG_HELP_LEN ((sizeof(FLAG_HELP) / sizeof(FLAG_HELP[0])) - 1) 
 #define FLAG_NO_REAL_LEN ((sizeof(FLAG_NO_REAL) / sizeof(FLAG_NO_REAL[0])) - 1)
 #define FLAG_DEBUG_MODE_LEN ((sizeof(FLAG_DEBUG_MODE) / sizeof(FLAG_DEBUG_MODE[0])) - 1)
+#define FLAG_GET_PTABLE_LEN ((sizeof(FLAG_GET_PTABLE) / sizeof(FLAG_GET_PTABLE[0])) - 1)
 
 #define FP_WINNINGP "src/files/win40.txt"
 #define FP_OPENINGS "src/files/openings.txt"
